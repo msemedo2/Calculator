@@ -3,7 +3,7 @@ const inputBtn = document.querySelectorAll('button');
 const clearBtn = document.getElementById('clear-btn');
 
 let firstValue = 0;
-let operator = '';
+let operatorValue = '';
 let awaitingNextValue = false;
 
 function sendNumberValue(number) {
@@ -28,18 +28,33 @@ function addDecimal() {
 	}
 }
 
+// Calculate first and second values depending on operator
+const calculate = {
+	'/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+	'*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+	'-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+	'+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+	'=': (secondNumber) => secondNumber,
+};
+
 function useOperator(operator) {
 	currentValue = Number(calculatorDisplay.textContent);
+	// Prevent multiple operators
+	if (operatorValue && awaitingNextValue) {
+		operatorValue = operator;
+		return;
+	}
 	// Assign firstValue if no value
 	if (!firstValue) {
 		firstValue = currentValue;
 	} else {
-		console.log('currentValue: ' + currentValue);
+		const calculation = calculate[operatorValue](firstValue, currentValue);
+		calculatorDisplay.textContent = calculation;
+		firstValue = calculation;
 	}
 	// Ready for next value, store operator
 	awaitingNextValue = true;
 	operatorValue = operator;
-	console.log(firstValue, operatorValue);
 }
 
 // Add Event Listeners for numbers, operators, decimal buttons
