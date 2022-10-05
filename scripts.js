@@ -2,6 +2,15 @@ const calculatorDisplay = document.querySelector('h1');
 const inputBtn = document.querySelectorAll('button');
 const clearBtn = document.getElementById('clear-btn');
 
+// Calculate first and second values depending on operator
+const calculate = {
+	'/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+	'*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+	'-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+	'+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+	'=': (secondNumber) => secondNumber,
+};
+
 let firstValue = 0;
 let operatorValue = '';
 let awaitingNextValue = false;
@@ -27,15 +36,6 @@ function addDecimal() {
 		calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
 	}
 }
-
-// Calculate first and second values depending on operator
-const calculate = {
-	'/': (firstNumber, secondNumber) => firstNumber / secondNumber,
-	'*': (firstNumber, secondNumber) => firstNumber * secondNumber,
-	'-': (firstNumber, secondNumber) => firstNumber - secondNumber,
-	'+': (firstNumber, secondNumber) => firstNumber + secondNumber,
-	'=': (secondNumber) => secondNumber,
-};
 
 function useOperator(operator) {
 	currentValue = Number(calculatorDisplay.textContent);
