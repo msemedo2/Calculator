@@ -56,3 +56,65 @@ body {
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
 }
+
+/* Buttons */
+
+.calculator-buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	padding: 10px;
+}
+
+.equal-sign {
+	grid-column: -2;
+	grid-row: 2 / span 4;
+}
+
+button {
+	min-height: 50px;
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: rgb(199, 199, 199);
+	outline: none;
+}
+
+button:hover {
+	filter: brightness(110%);
+}
+
+button:active {
+	transform: translateY(1px);
+}
+
+button:focus {
+	outline: none;
+}
+
+.operator {
+	background: grey;
+	color: #fff;
+	font-size: 30px;
+}
+
+.clear {
+	background-color: rgb(255, 40, 40);
+	color: #fff;
+}
+
+.clear:hover {
+	filter: brightness(90%);
+}
+
+.equal-sign {
+	background-color: rgb(13, 206, 87);
+}
+
+/* Media Query: Large Smartphone (vertical) */
+@media screen and (max-width: 500px) {
+	.calculator {
+		width: 90%;
+	}
+}
